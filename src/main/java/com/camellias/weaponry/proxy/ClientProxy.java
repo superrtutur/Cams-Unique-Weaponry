@@ -8,16 +8,27 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.util.IThreadListener;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class ClientProxy extends CommonProxy
 {
+	@Override
 	public void registerItemRenderer(Item item, int meta, String id)
 	{
 		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), id));
 	}
-	
+
+	@Override
+	public IThreadListener getThreadListener(final MessageContext context) {
+		if (context.side.isClient()) {
+			return Minecraft.getMinecraft();
+		} else {
+			return context.getServerHandler().player.getServer();
+		}
+	}
+
 	@Override
 	@Nullable
 	public EntityLivingBase getEntityLivingBase(MessageContext context, int entityID)
