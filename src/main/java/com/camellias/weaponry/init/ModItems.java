@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 import com.camellias.weaponry.common.items.ItemMacil;
-import com.camellias.weaponry.common.items.ItemNet;
 import com.camellias.weaponry.common.items.ItemPike;
 import com.camellias.weaponry.common.items.ItemSpearHalberd;
 
@@ -22,5 +21,4 @@ public class ModItems
 	public static final ItemTool SPEAR_HALBERD = new ItemSpearHalberd("spear_halberd", ModMaterials.SPEAR_MATERIAL, EFFECTIVE_ON);
 	public static final ItemTool PIKE = new ItemPike("pike", ModMaterials.PIKE_MATERIAL, EFFECTIVE_ON);
 	public static final ItemTool MACIL = new ItemMacil("macil", ModMaterials.MACIL_MATERIAL, EFFECTIVE_ON);
-	//public static final Item WEIGHTED_NET = new ItemNet("weighted_net");
 }

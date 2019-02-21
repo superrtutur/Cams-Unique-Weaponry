@@ -12,10 +12,8 @@ import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -42,6 +40,12 @@ public class ItemPike extends ItemTool implements IHasModel
 		String info = TextFormatting.DARK_GRAY + I18n.format(this.getUnlocalizedName() + ".info");
 		
 		tooltip.add(info);
+	}
+	
+	@Override
+	public boolean canDisableShield(ItemStack stack, ItemStack shield, EntityLivingBase entity, EntityLivingBase attacker)
+	{
+		return true;
 	}
 	
 	@Override

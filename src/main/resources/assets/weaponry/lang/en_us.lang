@@ -1,4 +1,3 @@
-
 itemGroup.weaponryTab=Cam's Unique Weaponry
 
 item.weaponry.spear_halberd.name=Spear-Halberd
@@ -6,7 +5,7 @@ item.weaponry.spear_halberd.info1=Damage increases based on
 item.weaponry.spear_halberd.info2=the speed of the wielder.
 
 item.weaponry.pike.name=Pike
-item.weaponry.pike.info=Breaks and pierces shields.
+item.weaponry.pike.info=Pierces shields and armour.
 
 item.weaponry.macil.name=Macil
 item.weaponry.macil.info=Damages heavily armoured opponents more.

@@ -49,12 +49,6 @@ public class RegistryHandler
 	{
 		CapabilitiesHandler.init();
 		NetworkHandler.init();
-		/*if(event.getSide() == Side.CLIENT)
-		{
-			RenderHandler.registerEntityRenders();
-		}
-
-		ModEntities.registerEntities();*/
 
 		MinecraftForge.EVENT_BUS.register(new EventHandler());
 	}
