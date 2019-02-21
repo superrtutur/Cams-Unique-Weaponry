@@ -1,0 +1,15 @@
+
+itemGroup.weaponryTab=Cam's Unique Weaponry
+
+item.spear_halberd.name=Spear-Halberd
+item.spear_halberd.info1=Damage increases based on
+item.spear_halberd.info2=the speed of the wielder.
+
+item.pike.name=Pike
+item.pike.info=Breaks and pierces shields.
+
+item.macil.name=Macil
+item.macil.info=Damages heavily armoured opponents more.
+
+item.laced_knife.name=Laced Knife
+item.laced_knife.info=Can be laced with a potion.
