@@ -3,6 +3,7 @@ package com.camellias.weaponry.common.items;
 import java.util.List;
 
 import com.camellias.weaponry.Main;
+import com.camellias.weaponry.Reference;
 import com.camellias.weaponry.common.entities.EntityWeightedNet;
 import com.camellias.weaponry.init.ModItems;
 import com.camellias.weaponry.util.IHasModel;
@@ -24,7 +25,7 @@ public class ItemNet extends Item implements IHasModel
 {
 	public ItemNet(String name)
 	{
-		this.setUnlocalizedName(name);
+		this.setUnlocalizedName(Reference.MODID + "." + name);
 		this.setRegistryName(name);
 		this.setCreativeTab(Main.WEAPONRY_TAB);
 		this.maxStackSize = 1;

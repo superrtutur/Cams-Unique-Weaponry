@@ -1,9 +1,11 @@
 package com.camellias.weaponry.common.items;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import com.camellias.weaponry.Main;
+import com.camellias.weaponry.Reference;
 import com.camellias.weaponry.init.ModItems;
 import com.camellias.weaponry.util.IHasModel;
 
@@ -22,13 +24,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@EventBusSubscriber
 public class ItemMacil extends ItemTool implements IHasModel
 {
 	public ItemMacil(String name, ToolMaterial material, Set<Block> effectiveBlocks)
 	{
 		super(material, effectiveBlocks);
-		this.setUnlocalizedName(name);
+		this.setUnlocalizedName(Reference.MODID + "." + name);
 		this.setRegistryName(name);
 		this.setCreativeTab(Main.WEAPONRY_TAB);
 		this.attackSpeed = -3.0F;
@@ -50,27 +51,5 @@ public class ItemMacil extends ItemTool implements IHasModel
 	public void registerModels() 
 	{
 		Main.proxy.registerItemRenderer(this, 0, "inventory");
-	}
-	
-	//---------------------------------------------------------------------------------------------------------------------------------//
-	
-	@SubscribeEvent
-	public static void onAttack(LivingDamageEvent event)
-	{
-		if(event.getSource().getTrueSource() instanceof EntityLivingBase)
-		{
-			EntityLivingBase attacker = (EntityLivingBase) event.getSource().getTrueSource();
-			
-			if(attacker.getHeldItemMainhand().getItem() == ModItems.MACIL)
-			{
-				if(!attacker.world.isRemote)
-				{
-					float initialDamage = event.getAmount();
-					double armour = event.getEntityLiving().getAttributeMap().getAttributeInstance(SharedMonsterAttributes.ARMOR).getAttributeValue();
-					
-					event.setAmount((float) (initialDamage + (armour / 3)));
-				}
-			}
-		}
 	}
 }

@@ -6,6 +6,7 @@ import com.camellias.weaponry.util.IHasModel;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -52,6 +53,8 @@ public class RegistryHandler
 		}
 		
 		ModEntities.registerEntities();*/
+		
+		MinecraftForge.EVENT_BUS.register(new EventHandler());
 	}
 	
 	public static void initRegistries()

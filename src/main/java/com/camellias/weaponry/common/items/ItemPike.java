@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.camellias.weaponry.Main;
+import com.camellias.weaponry.Reference;
 import com.camellias.weaponry.init.ModItems;
 import com.camellias.weaponry.util.IHasModel;
 
@@ -25,7 +26,7 @@ public class ItemPike extends ItemTool implements IHasModel
 	public ItemPike(String name, ToolMaterial material, Set<Block> effectiveBlocks)
 	{
 		super(material, effectiveBlocks);
-		this.setUnlocalizedName(name);
+		this.setUnlocalizedName(Reference.MODID + "." + name);
 		this.setRegistryName(name);
 		this.setCreativeTab(Main.WEAPONRY_TAB);
 		this.attackSpeed = -3.0F;
@@ -41,13 +42,6 @@ public class ItemPike extends ItemTool implements IHasModel
 		String info = TextFormatting.DARK_GRAY + I18n.format(this.getUnlocalizedName() + ".info");
 		
 		tooltip.add(info);
-	}
-	
-	@Override
-	public boolean canDisableShield(ItemStack stack, ItemStack shield, EntityLivingBase entity, EntityLivingBase attacker)
-	{
-		entity.attackEntityFrom(DamageSource.causeMobDamage(attacker), attackDamage / 2);
-		return true;
 	}
 	
 	@Override
