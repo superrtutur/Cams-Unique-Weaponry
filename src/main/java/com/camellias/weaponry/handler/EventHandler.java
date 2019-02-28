@@ -35,10 +35,24 @@ public class EventHandler
 		{
 			if(attacker.world.isRemote)
 			{
-				double velocityX = Math.abs(attacker.motionX);
-				double velocityZ = Math.abs(attacker.motionZ);
-				double d8 = (Math.sqrt((velocityX * velocityX) + (velocityZ * velocityZ)) * 10);
-				NetworkHandler.INSTANCE.sendToServer(new ItemPacket(0, false, d8, attacker.getEntityId()));
+				if(!attacker.isRiding())
+				{
+					double velocityX = Math.abs(attacker.motionX);
+					double velocityY = Math.abs(attacker.motionY);
+					double velocityZ = Math.abs(attacker.motionZ);
+					
+					double d8 = (Math.sqrt((velocityX * velocityX) + (velocityY * velocityY) + (velocityZ * velocityZ)) * 10);
+					NetworkHandler.INSTANCE.sendToServer(new ItemPacket(0, false, d8, attacker.getEntityId()));
+				}
+				else
+				{
+					double velocityX = Math.abs(attacker.getRidingEntity().motionX);
+					double velocityY = Math.abs(attacker.getRidingEntity().motionY);
+					double velocityZ = Math.abs(attacker.getRidingEntity().motionZ);
+					
+					double d8 = (Math.sqrt((velocityX * velocityX) + (velocityY * velocityY) + (velocityZ * velocityZ)) * 10);
+					NetworkHandler.INSTANCE.sendToServer(new ItemPacket(0, false, d8, attacker.getEntityId()));
+				}
 			}
 		}
 	}
