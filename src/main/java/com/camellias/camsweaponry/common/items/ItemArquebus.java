@@ -1,13 +1,22 @@
 package com.camellias.camsweaponry.common.items;
 
+import java.util.List;
+
 import com.camellias.camsweaponry.Main;
 import com.camellias.camsweaponry.Reference;
 import com.camellias.camsweaponry.common.entities.EntityBullet;
 import com.camellias.camsweaponry.core.init.ModItems;
 import com.camellias.camsweaponry.core.util.IHasModel;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.settings.GameSettings;
+import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.IItemPropertyGetter;
@@ -19,6 +28,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -39,8 +49,11 @@ public class ItemArquebus extends Item implements IHasModel
 			@SideOnly(Side.CLIENT)
 			public float apply(ItemStack stack, World world, EntityLivingBase entity)
 			{
-				return entity != null && entity.isHandActive() && stack.getTagCompound().getBoolean("isLoaded") &&
-						entity.getActiveItemStack() == stack ? 1.0F : 0.0F;
+				GameSettings settings = Minecraft.getMinecraft().gameSettings;
+				GuiScreen gui = Minecraft.getMinecraft().currentScreen;
+				KeyBinding rclick = settings.keyBindUseItem;
+				
+				return entity != null && settings.isKeyDown(rclick) && stack.getTagCompound().getBoolean("isLoaded") ? 1.0F : 0.0F;
 			}
 		});
 		
@@ -77,8 +90,7 @@ public class ItemArquebus extends Item implements IHasModel
 							SoundCategory.MASTER, 10.0F, 2.0F, true);
 					
 					EntityBullet entitybullet = new EntityBullet(world, player);
-					entitybullet.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 10.0F, 1.0F);
-					entitybullet.setPosition(player.posX, player.posY + player.eyeHeight, player.posZ);
+					entitybullet.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 10.0F, 0.8F);
 					world.spawnEntity(entitybullet);
 					
 					stack.getTagCompound().setBoolean("isLoaded", false);
@@ -141,7 +153,6 @@ public class ItemArquebus extends Item implements IHasModel
 				}
 				else
 				{
-					player.setActiveHand(hand);
 					return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);
 				}
 			}
@@ -163,6 +174,30 @@ public class ItemArquebus extends Item implements IHasModel
     {
 		return EnumAction.NONE;
     }
+	
+	@Override
+	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
+	{
+		ItemStack stack = new ItemStack(Items.IRON_INGOT);
+		
+		if(!stack.isEmpty())
+		{
+			return true;
+		}
+		
+		return super.getIsRepairable(toRepair, repair);
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flag)
+	{
+		final String info1 = TextFormatting.DARK_GRAY + I18n.format(this.getTranslationKey() + ".info1");
+		final String info2 = TextFormatting.DARK_GRAY + I18n.format(this.getTranslationKey() + ".info2");
+
+		tooltip.add(info1);
+		tooltip.add(info2);
+	}
 	
 	@Override
 	public void registerModels() 

@@ -13,8 +13,12 @@ item.camsweaponry.macil.name=Macil
 item.camsweaponry.macil.info=Damages heavily armoured opponents more.
 
 item.camsweaponry.arquebus.name=Arquebus
+item.camsweaponry.arquebus.info1=Fill with gunpowder, and load a bullet.
+item.camsweaponry.arquebus.info2=Pull the trigger to devastate foes.
 
 item.camsweaponry.powder_bag.name=Gunpowder Bag
+item.camsweaponry.powder_bag.info=Right click to fill with gunpowder.
+
 item.camsweaponry.iron_bullet.name=Iron Bullet
 
 

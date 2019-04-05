@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "X#X",
+        "X X",
+        " X "
+    ],
+    "key":
+    {
+        "#":
+        {
+            "item": "minecraft:string"
+        },
+        
+        "X":
+        {
+            "item": "minecraft:leather"
+        }
+    },
+      
+    "result":
+    {
+        "item": "camsweaponry:powder_bag"
+    }
+}

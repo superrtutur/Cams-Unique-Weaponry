@@ -1,0 +1,53 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "IIP",
+        " LP"
+    ],
+    "key":
+    {
+        "P":
+        [
+            {
+                "item": "minecraft:planks",
+                "data": 0
+            },
+            {
+                "item": "minecraft:planks",
+                "data": 1
+            },
+            {
+                "item": "minecraft:planks",
+                "data": 2
+            },
+            {
+                "item": "minecraft:planks",
+                "data": 3
+            },
+            {
+                "item": "minecraft:planks",
+                "data": 4
+            },
+            {
+                "item": "minecraft:planks",
+                "data": 5
+            }
+        ],
+        
+        "L":
+        {
+            "item": "minecraft:lever"
+        },
+        
+        "I":
+        {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+      
+    "result":
+    {
+        "item": "camsweaponry:arquebus"
+    }
+}

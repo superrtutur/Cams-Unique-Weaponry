@@ -1,12 +1,25 @@
 package com.camellias.camsweaponry.common.items.misc;
 
+import java.util.List;
+
 import com.camellias.camsweaponry.Main;
 import com.camellias.camsweaponry.Reference;
 import com.camellias.camsweaponry.core.init.ModItems;
 import com.camellias.camsweaponry.core.util.IHasModel;
 
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemPowderBag extends Item implements IHasModel
 {
@@ -22,6 +35,54 @@ public class ItemPowderBag extends Item implements IHasModel
 	}
 	
 	@Override
+	public boolean showDurabilityBar(ItemStack stack)
+	{
+		return true;
+	}
+	
+	@Override
+	public boolean isDamaged(ItemStack stack)
+	{
+		stack.setItemDamage(64);
+		return true;
+	}
+	
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
+	{
+		ItemStack stack = player.getHeldItem(hand);
+		ItemStack gunpowder = getStack(player, Items.GUNPOWDER);
+		
+		if(stack.getItemDamage() >= 4 && !player.isCreative())
+		{
+			gunpowder.shrink(1);
+			stack.setItemDamage(stack.getItemDamage() - 4);
+		}
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+	}
+	
+	@Override
+	public Item setNoRepair()
+	{
+		return this;
+	}
+	
+	@Override
+	public boolean isRepairable()
+	{
+		return false;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flag)
+	{
+		final String info = TextFormatting.DARK_GRAY + I18n.format(this.getTranslationKey() + ".info");
+
+		tooltip.add(info);
+	}
+	
+	@Override
 	public void registerModels() 
 	{
 		Main.proxy.registerItemRenderer(this, 0, "inventory");
@@ -30,5 +91,12 @@ public class ItemPowderBag extends Item implements IHasModel
 	public static boolean isUsable(ItemStack stack)
 	{
 		return stack.getItemDamage() < stack.getMaxDamage() - 1;
+	}
+	
+	private ItemStack getStack(EntityPlayer player, Item toFind)
+	{
+		for(ItemStack stack : player.inventory.mainInventory) if(stack.getItem() == toFind) return stack;
+		for(ItemStack stack : player.inventory.offHandInventory) if(stack.getItem() == toFind) return stack;
+		return ItemStack.EMPTY;
 	}
 }
