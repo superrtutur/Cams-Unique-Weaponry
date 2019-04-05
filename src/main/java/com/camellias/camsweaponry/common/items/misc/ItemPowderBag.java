@@ -3,11 +3,12 @@ package com.camellias.camsweaponry.common.items.misc;
 import com.camellias.camsweaponry.Main;
 import com.camellias.camsweaponry.Reference;
 import com.camellias.camsweaponry.core.init.ModItems;
+import com.camellias.camsweaponry.core.util.IHasModel;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class ItemPowderBag extends Item
+public class ItemPowderBag extends Item implements IHasModel
 {
 	public ItemPowderBag(String name)
 	{
@@ -18,6 +19,12 @@ public class ItemPowderBag extends Item
 		this.setMaxDamage(64);
 		
 		ModItems.ITEMS.add(this);
+	}
+	
+	@Override
+	public void registerModels() 
+	{
+		Main.proxy.registerItemRenderer(this, 0, "inventory");
 	}
 	
 	public static boolean isUsable(ItemStack stack)

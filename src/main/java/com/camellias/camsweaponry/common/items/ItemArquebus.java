@@ -2,15 +2,13 @@ package com.camellias.camsweaponry.common.items;
 
 import com.camellias.camsweaponry.Main;
 import com.camellias.camsweaponry.Reference;
-import com.camellias.camsweaponry.common.items.misc.ItemIronBullet;
-import com.camellias.camsweaponry.common.items.misc.ItemPowderBag;
 import com.camellias.camsweaponry.core.init.ModItems;
-import com.camellias.camsweaponry.core.network.NetworkHandler;
-import com.camellias.camsweaponry.core.network.packets.ArquebusPacket;
 import com.camellias.camsweaponry.core.util.IHasModel;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -34,49 +32,58 @@ public class ItemArquebus extends Item implements IHasModel
 	}
 	
 	@Override
-	public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase entity, int timeLeft)
-	{
-		if(entity instanceof EntityPlayer)
+	public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase living, int timeLeft)
+    {
+		if(!world.isRemote)
 		{
-			EntityPlayer player = (EntityPlayer) entity;
-			
-			if(!stack.hasTagCompound())
+			if(living instanceof EntityPlayer)
 			{
-				stack.setTagCompound(new NBTTagCompound());
-			}
-			
-			NBTTagCompound nbt = stack.getTagCompound();
-			
-			if(!nbt.getBoolean("isLoaded"))
-			{
-				ItemStack bulletStack = this.findAmmo(player);
-				ItemStack powderStack = this.findPowder(player);
-				ItemPowderBag powderItem = (ItemPowderBag) powderStack.getItem();
+				EntityPlayer player = (EntityPlayer) living;
+				ItemStack ammo = getAmmo(player);
+				ItemStack powder = getPowder(player);
 				
-				if((!bulletStack.isEmpty() && !powderStack.isEmpty()) || player.capabilities.isCreativeMode)
+				if(!stack.hasTagCompound())
 				{
-					if(!player.world.isRemote)
+					stack.setTagCompound(new NBTTagCompound());
+				}
+				
+				NBTTagCompound nbt = stack.getTagCompound();
+				
+				if(!nbt.hasKey("isLoaded"))
+				{
+					nbt.setBoolean("isLoaded", true);
+				}
+				else
+				{
+					if(timeLeft >= getMaxItemUseDuration(stack))
 					{
-						if(!player.capabilities.isCreativeMode)
+						if(!nbt.getBoolean("isLoaded"))
 						{
-							bulletStack.shrink(1);
-							powderStack.damageItem(1, player);
+							if(!player.isCreative())
+							{
+								ammo.shrink(1);
+								powder.damageItem(1, player);
+							}
+						}
+						
+						if(nbt.getBoolean("isLoaded"))
+						{
+							if(!player.isCreative())
+							{
+								stack.damageItem(1, player);
+							}
 							
-							nbt.setBoolean("isLoaded", false);
+							EntityArrow bullet = new EntityTippedArrow(world, player);
+							bullet.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 3.0F, 1.0F);
+							world.spawnEntity(bullet);
 						}
-						else
-						{
-							nbt.setBoolean("isLoaded", false);
-						}
+						
+						nbt.setBoolean("isLoaded", !nbt.getBoolean("isLoaded"));
 					}
 				}
 			}
-			else
-			{
-				
-			}
 		}
-	}
+    }
 	
 	@Override
 	public boolean onEntitySwing(EntityLivingBase entity, ItemStack stack)
@@ -84,20 +91,7 @@ public class ItemArquebus extends Item implements IHasModel
 		if(entity instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) entity;
-			
-			if(!stack.hasTagCompound())
-			{
-				stack.setTagCompound(new NBTTagCompound());
-			}
-			
-			NBTTagCompound nbt = stack.getTagCompound();
-			
-			if(nbt.getBoolean("isLoaded"))
-			{
-				nbt.setBoolean("isLoaded", false);
-				stack.damageItem(1, player);
-				NetworkHandler.INSTANCE.sendToServer(new ArquebusPacket(player));
-			}
+			World world = player.world;
 		}
 		
 		return true;
@@ -105,20 +99,23 @@ public class ItemArquebus extends Item implements IHasModel
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
-	{
-		ItemStack itemstack = player.getHeldItem(hand);
-		boolean flag = !this.findAmmo(player).isEmpty() && this.findPowder(player).getItemDamage() < this.findPowder(player).getMaxDamage();
-		
-		if(!player.capabilities.isCreativeMode && !flag)
-		{
-			return flag ? new ActionResult(EnumActionResult.PASS, itemstack) : new ActionResult(EnumActionResult.FAIL, itemstack);
-		}
-		else
-		{
-			player.setActiveHand(hand);
-			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
-		}
-	}
+    {
+        ItemStack itemstack = player.getHeldItem(hand);
+        
+        if (player.isCreative() || (!getAmmo(player).isEmpty() && !getPowder(player).isEmpty() &&
+        		(getPowder(player).getItemDamage() < getPowder(player).getMaxDamage() - 1)))
+        {
+            player.setActiveHand(hand);
+            return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+        }
+        else return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
+    }
+	
+	@Override
+	public int getMaxItemUseDuration(ItemStack stack)
+    {
+        return 100;
+    }
 	
 	@Override
 	public EnumAction getItemUseAction(ItemStack stack)
@@ -138,65 +135,25 @@ public class ItemArquebus extends Item implements IHasModel
 	
 	
 	
-	public ItemStack findPowder(EntityPlayer player)
+	private ItemStack getAmmo(EntityPlayer player)
 	{
-		if (this.isAmmo(player.getHeldItem(EnumHand.OFF_HAND)))
-		{
-			return player.getHeldItem(EnumHand.OFF_HAND);
-		}
-		else if (this.isAmmo(player.getHeldItem(EnumHand.MAIN_HAND)))
-		{
-			return player.getHeldItem(EnumHand.MAIN_HAND);
-		}
-		else
-		{
-			for (int i = 0; i < player.inventory.getSizeInventory(); ++i)
-			{
-				ItemStack itemstack = player.inventory.getStackInSlot(i);
-				
-				if (this.isAmmo(itemstack))
-				{
-					return itemstack;
-				}
-			}
-			
-			return ItemStack.EMPTY;
-		}
+		for(ItemStack stack : player.inventory.mainInventory)
+			if(stack.getItem() == ModItems.BULLET) return stack;
+		
+		for(ItemStack stack : player.inventory.offHandInventory)
+			if(stack.getItem() == ModItems.BULLET) return stack;
+		
+		return ItemStack.EMPTY;
 	}
 	
-	public ItemStack findAmmo(EntityPlayer player)
+	private ItemStack getPowder(EntityPlayer player)
 	{
-		if (this.isAmmo(player.getHeldItem(EnumHand.OFF_HAND)))
-		{
-			return player.getHeldItem(EnumHand.OFF_HAND);
-		}
-		else if (this.isAmmo(player.getHeldItem(EnumHand.MAIN_HAND)))
-		{
-			return player.getHeldItem(EnumHand.MAIN_HAND);
-		}
-		else
-		{
-			for (int i = 0; i < player.inventory.getSizeInventory(); ++i)
-			{
-				ItemStack itemstack = player.inventory.getStackInSlot(i);
-				
-				if (this.isAmmo(itemstack))
-				{
-					return itemstack;
-				}
-			}
-			
-			return ItemStack.EMPTY;
-		}
-	}
-	
-	public boolean isPowder(ItemStack stack)
-	{
-		return stack.getItem() instanceof ItemPowderBag;
-	}
-	
-	public boolean isAmmo(ItemStack stack)
-	{
-		return stack.getItem() instanceof ItemIronBullet;
+		for(ItemStack stack : player.inventory.mainInventory)
+			if(stack.getItem() == ModItems.POWDER_BAG) return stack;
+		
+		for(ItemStack stack : player.inventory.offHandInventory)
+			if(stack.getItem() == ModItems.POWDER_BAG) return stack;
+		
+		return ItemStack.EMPTY;
 	}
 }
