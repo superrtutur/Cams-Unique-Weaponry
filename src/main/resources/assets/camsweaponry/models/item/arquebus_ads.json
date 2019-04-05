@@ -181,9 +181,13 @@
 	],
 	"display": {
 		"firstperson_righthand": {
+			"rotation": [-7, 0, 0],
+			"translation": [-6, 4, 7],
 			"scale": [1.5, 1.5, 1.5]
 		},
 		"firstperson_lefthand": {
+			"rotation": [-7, 0, 0],
+			"translation": [-12, 4, 7],
 			"scale": [1.5, 1.5, 1.5]
 		},
 		"ground": {
@@ -208,13 +212,5 @@
 			"name": "Arquebus",
 			"children": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 		}
-	],
-	"overrides": [
-	   {
-            "predicate": {
-	           "ads": 1
-	       },
-	       "model": "camsweaponry:item/arquebus_ads"
-	   }
 	]
 }

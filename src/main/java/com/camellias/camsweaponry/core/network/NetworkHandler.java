@@ -1,7 +1,6 @@
 package com.camellias.camsweaponry.core.network;
 
 import com.camellias.camsweaponry.Reference;
-import com.camellias.camsweaponry.core.network.packets.ArquebusPacket;
 import com.camellias.camsweaponry.core.network.packets.ItemPacket;
 
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -23,8 +22,5 @@ public class NetworkHandler
 	{
 		INSTANCE.registerMessage(ItemPacket.ServerHandler.class, ItemPacket.class, nextId(), Side.SERVER);
 		INSTANCE.registerMessage(ItemPacket.ClientHandler.class, ItemPacket.class, nextId(), Side.CLIENT);
-		
-		INSTANCE.registerMessage(ArquebusPacket.ArquebusPacketHandler.class, ArquebusPacket.class, nextId(), Side.SERVER);
-		INSTANCE.registerMessage(ArquebusPacket.ArquebusPacketHandler.class, ArquebusPacket.class, nextId(), Side.CLIENT);
 	}
 }

@@ -1,14 +1,22 @@
 itemGroup.weaponryTab=Cam's Unique Weaponry
 
-item.weaponry.spear_halberd.name=Spear-Halberd
-item.weaponry.spear_halberd.info1=Damage increases based on
-item.weaponry.spear_halberd.info2=the speed of the wielder.
 
-item.weaponry.pike.name=Pike
-item.weaponry.pike.info=Pierces shields and armour.
 
-item.weaponry.macil.name=Macil
-item.weaponry.macil.info=Damages heavily armoured opponents more.
+item.camsweaponry.spear_halberd.name=Jin-Halberd
+item.camsweaponry.spear_halberd.info1=Damage increases based on
+item.camsweaponry.spear_halberd.info2=the speed of the wielder.
 
-item.weaponry.laced_knife.name=Laced Knife
-item.weaponry.laced_knife.info=Can be laced with a potion.
+item.camsweaponry.pike.name=Pike
+item.camsweaponry.pike.info=Pierces shields and armour.
+
+item.camsweaponry.macil.name=Macil
+item.camsweaponry.macil.info=Damages heavily armoured opponents more.
+
+item.camsweaponry.arquebus.name=Arquebus
+
+item.camsweaponry.powder_bag.name=Gunpowder Bag
+item.camsweaponry.iron_bullet.name=Iron Bullet
+
+
+
+death.attack.bullet=%1$s ate lead.
