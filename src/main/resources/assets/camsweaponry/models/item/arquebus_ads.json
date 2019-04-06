@@ -1,216 +1,216 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
-		"0": "camsweaponry:item/handle",
-		"1": "camsweaponry:item/iron",
-		"particle": "camsweaponry:item/handle"
-	},
-	"elements": [
-		{
-			"name": "ArquebusBack",
-			"from": [5, 7, 8],
-			"to": [7, 9.5, 18],
-			"faces": {
-				"north": {"uv": [0, 0, 2, 2.5], "texture": "#0"},
-				"east": {"uv": [0, 0, 10, 2.5], "texture": "#0"},
-				"south": {"uv": [0, 0, 2, 2.5], "texture": "#0"},
-				"west": {"uv": [0, 0, 10, 2.5], "texture": "#0"},
-				"up": {"uv": [0, 0, 2, 10], "texture": "#0"},
-				"down": {"uv": [0, 0, 2, 10], "texture": "#0"}
-			}
-		},
-		{
-			"name": "ArquebusHilt",
-			"from": [5.05, 10.66, 9.48],
-			"to": [6.95, 12.66, 14.48],
-			"rotation": {"angle": 22.5, "axis": "x", "origin": [6, 1, 2]},
-			"faces": {
-				"north": {"uv": [0, 0, 1.9, 2], "texture": "#0"},
-				"east": {"uv": [0, 0, 5, 2], "texture": "#0"},
-				"south": {"uv": [0, 0, 1.9, 2], "texture": "#0"},
-				"west": {"uv": [0, 0, 5, 2], "texture": "#0"},
-				"up": {"uv": [0, 0, 1.9, 5], "texture": "#0"},
-				"down": {"uv": [0, 0, 1.9, 5], "texture": "#0"}
-			}
-		},
-		{
-			"name": "ArquebusFront",
-			"from": [5, 7, -8],
-			"to": [7, 9, 8],
-			"faces": {
-				"north": {"uv": [0, 0, 2, 2], "texture": "#0"},
-				"east": {"uv": [0, 0, 16, 2], "texture": "#0"},
-				"south": {"uv": [0, 0, 2, 2], "texture": "#0"},
-				"west": {"uv": [0, 0, 16, 2], "texture": "#0"},
-				"up": {"uv": [0, 0, 2, 16], "texture": "#0"},
-				"down": {"uv": [0, 0, 2, 16], "texture": "#0"}
-			}
-		},
-		{
-			"name": "ArquebusBarrel",
-			"from": [5.5, 8.5, -8],
-			"to": [6.5, 9.5, 8],
-			"faces": {
-				"north": {"uv": [0, 0, 1, 1], "texture": "#1"},
-				"east": {"uv": [0, 0, 16, 1], "texture": "#1"},
-				"south": {"uv": [0, 0, 1, 1], "texture": "#1"},
-				"west": {"uv": [0, 0, 16, 1], "texture": "#1"},
-				"up": {"uv": [0, 0, 1, 16], "texture": "#1"},
-				"down": {"uv": [0, 0, 1, 16], "texture": "#1"}
-			}
-		},
-		{
-			"name": "ArquebusMatch",
-			"from": [5.635, 7.25, -10.5],
-			"to": [6.385, 8, -8],
-			"faces": {
-				"north": {"uv": [0, 0, 0.5, 0.5], "texture": "#1"},
-				"east": {"uv": [0, 0, 2, 0.5], "texture": "#1"},
-				"south": {"uv": [0, 0, 0.5, 0.5], "texture": "#1"},
-				"west": {"uv": [0, 0, 2.5, 0.75], "texture": "#1"},
-				"up": {"uv": [0, 0, 0.5, 2], "texture": "#1"},
-				"down": {"uv": [0, 0, 0.5, 2], "texture": "#1"}
-			}
-		},
-		{
-			"name": "ArquebusCone1",
-			"from": [5.375, 8.375, -9.5],
-			"to": [6.625, 9.625, -8],
-			"faces": {
-				"north": {"uv": [0, 0, 1.25, 1.25], "texture": "#1"},
-				"east": {"uv": [0, 0, 1.5, 1.25], "texture": "#1"},
-				"south": {"uv": [0, 0, 1.25, 1.25], "texture": "#1"},
-				"west": {"uv": [0, 0, 1.5, 1.25], "texture": "#1"},
-				"up": {"uv": [0, 0, 1.25, 1], "texture": "#1"},
-				"down": {"uv": [0, 0, 1.25, 1], "texture": "#1"}
-			}
-		},
-		{
-			"name": "ArquebusCone2",
-			"from": [5.25, 8.25, -10.5],
-			"to": [6.75, 9.75, -9.5],
-			"faces": {
-				"north": {"uv": [0, 0, 1.25, 1.25], "texture": "#1"},
-				"east": {"uv": [0, 0, 1, 1.25], "texture": "#1"},
-				"south": {"uv": [0, 0, 1.25, 1.25], "texture": "#1"},
-				"west": {"uv": [0, 0, 1, 1.5], "texture": "#1"},
-				"up": {"uv": [0, 0, 1.25, 1], "texture": "#1"},
-				"down": {"uv": [0, 0, 1.25, 1], "texture": "#1"}
-			}
-		},
-		{
-			"name": "ArquebusTrigger1",
-			"from": [5.75, 6, 8.5],
-			"to": [6.25, 7, 9],
-			"faces": {
-				"north": {"uv": [0, 0, 0.5, 1], "texture": "#1"},
-				"east": {"uv": [0, 0, 0.5, 1], "texture": "#1"},
-				"south": {"uv": [0, 0, 0.5, 1], "texture": "#1"},
-				"west": {"uv": [0, 0, 0.5, 1], "texture": "#1"},
-				"up": {"uv": [0, 0, 0.5, 0.5], "texture": "#1"},
-				"down": {"uv": [0, 0, 0.5, 0.5], "texture": "#1"}
-			}
-		},
-		{
-			"name": "ArquebusTrigger2",
-			"from": [5.75, 8.65, 5.8],
-			"to": [6.25, 9.15, 9.8],
-			"rotation": {"angle": 22.5, "axis": "x", "origin": [0.5, 0.5, 0.5]},
-			"faces": {
-				"north": {"uv": [0, 0, 0.5, 0.5], "rotation": 180, "texture": "#1"},
-				"east": {"uv": [0, 0, 0.5, 4], "rotation": 90, "texture": "#1"},
-				"south": {"uv": [0, 0, 0.5, 0.5], "texture": "#1"},
-				"west": {"uv": [0, 0, 0.5, 4], "rotation": 270, "texture": "#1"},
-				"up": {"uv": [0, 0, 0.5, 4], "texture": "#1"},
-				"down": {"uv": [0, 0, 0.5, 4], "rotation": 180, "texture": "#1"}
-			}
-		},
-		{
-			"name": "ArquebusSights",
-			"from": [5.75, 9.625, 7.5],
-			"to": [6.25, 10.625, 8],
-			"faces": {
-				"north": {"uv": [0, 0, 0.5, 1], "texture": "#1"},
-				"east": {"uv": [0, 0, 0.5, 1], "texture": "#1"},
-				"south": {"uv": [0, 0, 0.5, 1], "texture": "#1"},
-				"west": {"uv": [0, 0, 0.5, 1], "texture": "#1"},
-				"up": {"uv": [0, 0, 0.5, 0.5], "texture": "#1"},
-				"down": {"uv": [0, 0, 0.5, 0.5], "texture": "#1"}
-			}
-		},
-		{
-			"name": "ArquebusChamber",
-			"from": [5.375, 8.375, 6.25],
-			"to": [6.625, 9.625, 8],
-			"faces": {
-				"north": {"uv": [1, 1, 2.25, 2.25], "texture": "#1"},
-				"east": {"uv": [1, 1, 2.75, 2.25], "texture": "#1"},
-				"south": {"uv": [1, 1, 2.25, 2.25], "texture": "#1"},
-				"west": {"uv": [1, 1, 2.75, 2.25], "texture": "#1"},
-				"up": {"uv": [1, 1, 2.25, 2.75], "texture": "#1"},
-				"down": {"uv": [1, 1, 2.25, 2.75], "texture": "#1"}
-			}
-		},
-		{
-			"name": "ArquebusSafety",
-			"from": [7, 8.75, 5.5],
-			"to": [7.25, 9.25, 7],
-			"rotation": {"angle": 45, "axis": "x", "origin": [8, 8.5, 6.5]},
-			"faces": {
-				"north": {"uv": [0, 0, 0.25, 0.5], "texture": "#1"},
-				"east": {"uv": [0, 0, 1.5, 0.5], "texture": "#1"},
-				"south": {"uv": [0, 0, 0.25, 0.5], "texture": "#1"},
-				"west": {"uv": [0, 0, 1.5, 0.5], "texture": "#1"},
-				"up": {"uv": [0, 0, 0.25, 1.5], "texture": "#1"},
-				"down": {"uv": [0, 0, 0.25, 1.5], "texture": "#1"}
-			}
-		},
-		{
-			"name": "ArquebusPlate",
-			"from": [7, 7.75, 6],
-			"to": [7.1, 8.75, 10],
-			"faces": {
-				"north": {"uv": [0, 0, 0.1, 1], "texture": "#1"},
-				"east": {"uv": [0, 0, 4, 1], "texture": "#1"},
-				"south": {"uv": [0, 0, 0.1, 1], "texture": "#1"},
-				"west": {"uv": [0, 0, 4, 1], "texture": "#1"},
-				"up": {"uv": [0, 0, 0.1, 4], "texture": "#1"},
-				"down": {"uv": [0, 0, 0.1, 4], "texture": "#1"}
-			}
-		}
-	],
-	"display": {
-		"firstperson_righthand": {
-			"rotation": [-7, 0, 0],
-			"translation": [-6, 4, 7],
-			"scale": [1.5, 1.5, 1.5]
-		},
-		"firstperson_lefthand": {
-			"rotation": [-7, 0, 0],
-			"translation": [-12, 4, 7],
-			"scale": [1.5, 1.5, 1.5]
-		},
-		"ground": {
-			"rotation": [25, 0, 0]
-		},
-		"gui": {
-			"rotation": [55, 55, -55],
-			"translation": [2.75, 0, 0],
-			"scale": [0.7, 0.7, 0.7]
-		},
-		"head": {
-			"translation": [2, 0, 0]
-		},
-		"fixed": {
-			"rotation": [0, -90, 0],
-			"translation": [-3.5, 0, 0],
-			"scale": [0.75, 0.75, 0.75]
-		}
-	},
-	"groups": [
-		{
-			"name": "Arquebus",
-			"children": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-		}
-	]
+    "credit": "Made with Blockbench",
+    "textures": {
+        "0": "camsweaponry:items/handle",
+        "1": "camsweaponry:items/iron",
+        "particle": "camsweaponry:items/handle"
+    },
+    "elements": [
+        {
+            "name": "ArquebusBack",
+            "from": [5, 7, 8],
+            "to": [7, 9.5, 18],
+            "faces": {
+                "north": {"uv": [0, 0, 2, 2.5], "texture": "#0"},
+                "east": {"uv": [0, 0, 10, 2.5], "texture": "#0"},
+                "south": {"uv": [0, 0, 2, 2.5], "texture": "#0"},
+                "west": {"uv": [0, 0, 10, 2.5], "texture": "#0"},
+                "up": {"uv": [0, 0, 2, 10], "texture": "#0"},
+                "down": {"uv": [0, 0, 2, 10], "texture": "#0"}
+            }
+        },
+        {
+            "name": "ArquebusHilt",
+            "from": [5.05, 10.66, 9.48],
+            "to": [6.95, 12.66, 14.48],
+            "rotation": {"angle": 22.5, "axis": "x", "origin": [6, 1, 2]},
+            "faces": {
+                "north": {"uv": [0, 0, 1.9, 2], "texture": "#0"},
+                "east": {"uv": [0, 0, 5, 2], "texture": "#0"},
+                "south": {"uv": [0, 0, 1.9, 2], "texture": "#0"},
+                "west": {"uv": [0, 0, 5, 2], "texture": "#0"},
+                "up": {"uv": [0, 0, 1.9, 5], "texture": "#0"},
+                "down": {"uv": [0, 0, 1.9, 5], "texture": "#0"}
+            }
+        },
+        {
+            "name": "ArquebusFront",
+            "from": [5, 7, -8],
+            "to": [7, 9, 8],
+            "faces": {
+                "north": {"uv": [0, 0, 2, 2], "texture": "#0"},
+                "east": {"uv": [0, 0, 16, 2], "texture": "#0"},
+                "south": {"uv": [0, 0, 2, 2], "texture": "#0"},
+                "west": {"uv": [0, 0, 16, 2], "texture": "#0"},
+                "up": {"uv": [0, 0, 2, 16], "texture": "#0"},
+                "down": {"uv": [0, 0, 2, 16], "texture": "#0"}
+            }
+        },
+        {
+            "name": "ArquebusBarrel",
+            "from": [5.5, 8.5, -8],
+            "to": [6.5, 9.5, 8],
+            "faces": {
+                "north": {"uv": [0, 0, 1, 1], "texture": "#1"},
+                "east": {"uv": [0, 0, 16, 1], "texture": "#1"},
+                "south": {"uv": [0, 0, 1, 1], "texture": "#1"},
+                "west": {"uv": [0, 0, 16, 1], "texture": "#1"},
+                "up": {"uv": [0, 0, 1, 16], "texture": "#1"},
+                "down": {"uv": [0, 0, 1, 16], "texture": "#1"}
+            }
+        },
+        {
+            "name": "ArquebusMatch",
+            "from": [5.635, 7.25, -10.5],
+            "to": [6.385, 8, -8],
+            "faces": {
+                "north": {"uv": [0, 0, 0.5, 0.5], "texture": "#1"},
+                "east": {"uv": [0, 0, 2, 0.5], "texture": "#1"},
+                "south": {"uv": [0, 0, 0.5, 0.5], "texture": "#1"},
+                "west": {"uv": [0, 0, 2.5, 0.75], "texture": "#1"},
+                "up": {"uv": [0, 0, 0.5, 2], "texture": "#1"},
+                "down": {"uv": [0, 0, 0.5, 2], "texture": "#1"}
+            }
+        },
+        {
+            "name": "ArquebusCone1",
+            "from": [5.375, 8.375, -9.5],
+            "to": [6.625, 9.625, -8],
+            "faces": {
+                "north": {"uv": [0, 0, 1.25, 1.25], "texture": "#1"},
+                "east": {"uv": [0, 0, 1.5, 1.25], "texture": "#1"},
+                "south": {"uv": [0, 0, 1.25, 1.25], "texture": "#1"},
+                "west": {"uv": [0, 0, 1.5, 1.25], "texture": "#1"},
+                "up": {"uv": [0, 0, 1.25, 1], "texture": "#1"},
+                "down": {"uv": [0, 0, 1.25, 1], "texture": "#1"}
+            }
+        },
+        {
+            "name": "ArquebusCone2",
+            "from": [5.25, 8.25, -10.5],
+            "to": [6.75, 9.75, -9.5],
+            "faces": {
+                "north": {"uv": [0, 0, 1.25, 1.25], "texture": "#1"},
+                "east": {"uv": [0, 0, 1, 1.25], "texture": "#1"},
+                "south": {"uv": [0, 0, 1.25, 1.25], "texture": "#1"},
+                "west": {"uv": [0, 0, 1, 1.5], "texture": "#1"},
+                "up": {"uv": [0, 0, 1.25, 1], "texture": "#1"},
+                "down": {"uv": [0, 0, 1.25, 1], "texture": "#1"}
+            }
+        },
+        {
+            "name": "ArquebusTrigger1",
+            "from": [5.75, 6, 8.5],
+            "to": [6.25, 7, 9],
+            "faces": {
+                "north": {"uv": [0, 0, 0.5, 1], "texture": "#1"},
+                "east": {"uv": [0, 0, 0.5, 1], "texture": "#1"},
+                "south": {"uv": [0, 0, 0.5, 1], "texture": "#1"},
+                "west": {"uv": [0, 0, 0.5, 1], "texture": "#1"},
+                "up": {"uv": [0, 0, 0.5, 0.5], "texture": "#1"},
+                "down": {"uv": [0, 0, 0.5, 0.5], "texture": "#1"}
+            }
+        },
+        {
+            "name": "ArquebusTrigger2",
+            "from": [5.75, 8.65, 5.8],
+            "to": [6.25, 9.15, 9.8],
+            "rotation": {"angle": 22.5, "axis": "x", "origin": [0.5, 0.5, 0.5]},
+            "faces": {
+                "north": {"uv": [0, 0, 0.5, 0.5], "rotation": 180, "texture": "#1"},
+                "east": {"uv": [0, 0, 0.5, 4], "rotation": 90, "texture": "#1"},
+                "south": {"uv": [0, 0, 0.5, 0.5], "texture": "#1"},
+                "west": {"uv": [0, 0, 0.5, 4], "rotation": 270, "texture": "#1"},
+                "up": {"uv": [0, 0, 0.5, 4], "texture": "#1"},
+                "down": {"uv": [0, 0, 0.5, 4], "rotation": 180, "texture": "#1"}
+            }
+        },
+        {
+            "name": "ArquebusSights",
+            "from": [5.75, 9.625, 7.5],
+            "to": [6.25, 10.625, 8],
+            "faces": {
+                "north": {"uv": [0, 0, 0.5, 1], "texture": "#1"},
+                "east": {"uv": [0, 0, 0.5, 1], "texture": "#1"},
+                "south": {"uv": [0, 0, 0.5, 1], "texture": "#1"},
+                "west": {"uv": [0, 0, 0.5, 1], "texture": "#1"},
+                "up": {"uv": [0, 0, 0.5, 0.5], "texture": "#1"},
+                "down": {"uv": [0, 0, 0.5, 0.5], "texture": "#1"}
+            }
+        },
+        {
+            "name": "ArquebusChamber",
+            "from": [5.375, 8.375, 6.25],
+            "to": [6.625, 9.625, 8],
+            "faces": {
+                "north": {"uv": [1, 1, 2.25, 2.25], "texture": "#1"},
+                "east": {"uv": [1, 1, 2.75, 2.25], "texture": "#1"},
+                "south": {"uv": [1, 1, 2.25, 2.25], "texture": "#1"},
+                "west": {"uv": [1, 1, 2.75, 2.25], "texture": "#1"},
+                "up": {"uv": [1, 1, 2.25, 2.75], "texture": "#1"},
+                "down": {"uv": [1, 1, 2.25, 2.75], "texture": "#1"}
+            }
+        },
+        {
+            "name": "ArquebusSafety",
+            "from": [7, 8.75, 5.5],
+            "to": [7.25, 9.25, 7],
+            "rotation": {"angle": 45, "axis": "x", "origin": [8, 8.5, 6.5]},
+            "faces": {
+                "north": {"uv": [0, 0, 0.25, 0.5], "texture": "#1"},
+                "east": {"uv": [0, 0, 1.5, 0.5], "texture": "#1"},
+                "south": {"uv": [0, 0, 0.25, 0.5], "texture": "#1"},
+                "west": {"uv": [0, 0, 1.5, 0.5], "texture": "#1"},
+                "up": {"uv": [0, 0, 0.25, 1.5], "texture": "#1"},
+                "down": {"uv": [0, 0, 0.25, 1.5], "texture": "#1"}
+            }
+        },
+        {
+            "name": "ArquebusPlate",
+            "from": [7, 7.75, 6],
+            "to": [7.1, 8.75, 10],
+            "faces": {
+                "north": {"uv": [0, 0, 0.1, 1], "texture": "#1"},
+                "east": {"uv": [0, 0, 4, 1], "texture": "#1"},
+                "south": {"uv": [0, 0, 0.1, 1], "texture": "#1"},
+                "west": {"uv": [0, 0, 4, 1], "texture": "#1"},
+                "up": {"uv": [0, 0, 0.1, 4], "texture": "#1"},
+                "down": {"uv": [0, 0, 0.1, 4], "texture": "#1"}
+            }
+        }
+    ],
+    "display": {
+        "firstperson_righthand": {
+            "rotation": [-7, 0, 0],
+            "translation": [-6, 4, 7],
+            "scale": [1.5, 1.5, 1.5]
+        },
+        "firstperson_lefthand": {
+            "rotation": [-7, 0, 0],
+            "translation": [-12, 4, 7],
+            "scale": [1.5, 1.5, 1.5]
+        },
+        "ground": {
+            "rotation": [25, 0, 0]
+        },
+        "gui": {
+            "rotation": [55, 55, -55],
+            "translation": [2.75, 0, 0],
+            "scale": [0.7, 0.7, 0.7]
+        },
+        "head": {
+            "translation": [2, 0, 0]
+        },
+        "fixed": {
+            "rotation": [0, -90, 0],
+            "translation": [-3.5, 0, 0],
+            "scale": [0.75, 0.75, 0.75]
+        }
+    },
+    "groups": [
+        {
+            "name": "Arquebus",
+            "children": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+        }
+    ]
 }

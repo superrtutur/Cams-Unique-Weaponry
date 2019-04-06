@@ -53,7 +53,15 @@ public class ItemArquebus extends Item implements IHasModel
 				GuiScreen gui = Minecraft.getMinecraft().currentScreen;
 				KeyBinding rclick = settings.keyBindUseItem;
 				
-				return entity != null && settings.isKeyDown(rclick) && stack.getTagCompound().getBoolean("isLoaded") ? 1.0F : 0.0F;
+				if(stack.hasTagCompound())
+				{
+					if(stack.getTagCompound().hasKey("isLoaded"))
+					{
+						return entity != null && settings.isKeyDown(rclick) && stack.getTagCompound().getBoolean("isLoaded") ? 1.0F : 0.0F;
+					}
+					else return 0.0F;
+				}
+				else return 0.0F;
 			}
 		});
 		

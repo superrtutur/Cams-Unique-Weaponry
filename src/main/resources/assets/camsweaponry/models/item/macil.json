@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "camsweaponry:item/handle",
-		"1": "camsweaponry:item/iron",
-		"particle": "camsweaponry:item/handle"
+		"0": "camsweaponry:items/handle",
+		"1": "camsweaponry:items/iron",
+		"particle": "camsweaponry:items/handle"
 	},
 	"elements": [
 		{

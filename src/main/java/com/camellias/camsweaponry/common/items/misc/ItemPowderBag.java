@@ -9,6 +9,7 @@ import com.camellias.camsweaponry.core.util.IHasModel;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -16,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -28,6 +30,7 @@ public class ItemPowderBag extends Item implements IHasModel
 		this.setTranslationKey(Reference.MODID + "." + name);
 		this.setRegistryName(name);
 		this.setCreativeTab(Main.WEAPONRY_TAB);
+		this.setHasSubtypes(true);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(64);
 		
@@ -41,24 +44,28 @@ public class ItemPowderBag extends Item implements IHasModel
 	}
 	
 	@Override
-	public boolean isDamaged(ItemStack stack)
-	{
-		stack.setItemDamage(64);
-		return true;
-	}
-	
-	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
 	{
 		ItemStack stack = player.getHeldItem(hand);
 		ItemStack gunpowder = getStack(player, Items.GUNPOWDER);
 		
-		if(stack.getItemDamage() >= 4 && !player.isCreative())
+		if(stack.getItemDamage() >= 8 && !player.isCreative())
 		{
 			gunpowder.shrink(1);
-			stack.setItemDamage(stack.getItemDamage() - 4);
+			stack.setItemDamage(stack.getItemDamage() - 8);
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+	}
+	
+	@Override
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
+	{
+		if(this.isInCreativeTab(tab))
+		{
+			ItemStack is = new ItemStack(this);
+			is.setItemDamage(64);
+			items.add(is);
+		}
 	}
 	
 	@Override

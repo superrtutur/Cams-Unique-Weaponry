@@ -1,10 +1,10 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "camsweaponry:item/handle",
-		"2": "camsweaponry:item/iron",
-		"3": "camsweaponry:item/gold embosement",
-		"particle": "camsweaponry:item/handle"
+		"0": "camsweaponry:items/handle",
+		"2": "camsweaponry:items/iron",
+		"3": "camsweaponry:items/gold embosement",
+		"particle": "camsweaponry:items/handle"
 	},
 	"elements": [
 		{

@@ -2,8 +2,6 @@ package com.camellias.camsweaponry.common.entities;
 
 import java.util.UUID;
 
-import com.camellias.camsweaponry.core.init.ModDamageTypes;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -13,10 +11,10 @@ import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.world.World;
@@ -30,7 +28,7 @@ public class EntityBullet extends EntityThrowable implements IProjectile
 	public EntityBullet(World world)
 	{
 		super(world);
-		this.setSize(0.25F, 0.25F);
+		this.setSize(0.5F, 0.5F);
 	}
 	
 	public EntityBullet(World world, EntityPlayer player)
@@ -50,7 +48,7 @@ public class EntityBullet extends EntityThrowable implements IProjectile
 				
 				if(entity != getOwner())
 				{
-					entity.attackEntityFrom(ModDamageTypes.ATE_LEAD, 20);
+					entity.attackEntityFrom(DamageSource.causePlayerDamage(getOwner()), 20);
 					setDead();
 				}
 			}
