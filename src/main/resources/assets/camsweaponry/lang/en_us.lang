@@ -2,9 +2,9 @@ itemGroup.weaponryTab=Cam's Unique Weaponry
 
 
 
-item.camsweaponry.spear_halberd.name=Jin-Halberd
-item.camsweaponry.spear_halberd.info1=Damage increases based on
-item.camsweaponry.spear_halberd.info2=the speed of the wielder.
+item.camsweaponry.jin_halberd.name=Jin-Halberd
+item.camsweaponry.jin_halberd.info1=Damage increases based on
+item.camsweaponry.jin_halberd.info2=the speed of the wielder.
 
 item.camsweaponry.pike.name=Pike
 item.camsweaponry.pike.info=Pierces shields and armour.

@@ -21,6 +21,7 @@
       
     "result":
     {
-        "item": "camsweaponry:powder_bag"
+        "item": "camsweaponry:powder_bag",
+        "data": 64
     }
 }

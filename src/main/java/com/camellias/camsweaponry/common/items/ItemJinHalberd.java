@@ -21,9 +21,9 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemSpearHalberd extends ItemTool implements IHasModel
+public class ItemJinHalberd extends ItemTool implements IHasModel
 {
-	public ItemSpearHalberd(String name, ToolMaterial material, Set<Block> effectiveBlocks)
+	public ItemJinHalberd(String name, ToolMaterial material, Set<Block> effectiveBlocks)
 	{
 		super(material, effectiveBlocks);
 		this.setTranslationKey(Reference.MODID + "." + name);

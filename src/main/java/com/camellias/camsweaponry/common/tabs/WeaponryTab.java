@@ -11,10 +11,10 @@ public class WeaponryTab extends CreativeTabs
 	{
 		super(label);
 	}
-
+	
 	@Override
 	public ItemStack createIcon()
 	{
-		return new ItemStack(ModItems.SPEAR_HALBERD);
+		return new ItemStack(ModItems.JIN_HALBERD);
 	}
 }

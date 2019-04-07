@@ -8,11 +8,16 @@ import com.camellias.camsweaponry.core.network.packets.ItemPacket;
 import com.camellias.camsweaponry.core.util.capabilities.ItemCap.IItemCap;
 import com.camellias.camsweaponry.core.util.capabilities.ItemCap.ItemProvider;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.settings.GameSettings;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
@@ -24,6 +29,53 @@ public class EventHandler
 	public final Field isUnblockable = ReflectionHelper.findField(DamageSource.class, "field_76374_o", "isUnblockable");
 	
 	@SubscribeEvent
+	public void changeFOV(FOVUpdateEvent event)
+	{
+		if(event.getEntity() != null)
+		{
+			final EntityPlayer player = event.getEntity();
+			GameSettings settings = Minecraft.getMinecraft().gameSettings;
+			GuiScreen gui = Minecraft.getMinecraft().currentScreen;
+			KeyBinding rclick = settings.keyBindUseItem;
+			
+			if(settings.isKeyDown(rclick) && gui == null)
+			{
+				if(player.getHeldItemMainhand().getItem() == ModItems.ARQUEBUS)
+				{
+					ItemStack stack = player.getHeldItemMainhand();
+					
+					if(stack.hasTagCompound())
+					{
+						if(stack.getTagCompound().hasKey("isLoaded"))
+						{
+							if(stack.getTagCompound().getBoolean("isLoaded"))
+							{
+								event.setNewfov(event.getFov() * 0.65F);
+							}
+						}
+					}
+				}
+				
+				if(player.getHeldItemOffhand().getItem() == ModItems.ARQUEBUS)
+				{
+					ItemStack stack = player.getHeldItemOffhand();
+					
+					if(stack.hasTagCompound())
+					{
+						if(stack.getTagCompound().hasKey("isLoaded"))
+						{
+							if(stack.getTagCompound().getBoolean("isLoaded"))
+							{
+								event.setNewfov(event.getFov() * 0.65F);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	@SubscribeEvent
 	public void onPlayerAttack(AttackEntityEvent event)
 	{
 		EntityPlayer attacker = event.getEntityPlayer();
@@ -31,7 +83,7 @@ public class EventHandler
 		/**
 		 * Spear-Halberd Code
 		 */
-		if(attacker.getHeldItemMainhand().getItem() == ModItems.SPEAR_HALBERD)
+		if(attacker.getHeldItemMainhand().getItem() == ModItems.JIN_HALBERD)
 		{
 			if(attacker.world.isRemote)
 			{
@@ -127,7 +179,7 @@ public class EventHandler
 			{
 				EntityPlayer player = (EntityPlayer) attacker;
 				
-				if(player.getHeldItemMainhand().getItem() == ModItems.SPEAR_HALBERD)
+				if(player.getHeldItemMainhand().getItem() == ModItems.JIN_HALBERD)
 				{
 					if(!player.world.isRemote)
 					{

@@ -4,10 +4,12 @@ import java.util.List;
 
 import com.camellias.camsweaponry.Main;
 import com.camellias.camsweaponry.Reference;
-import com.camellias.camsweaponry.common.entities.EntityBullet;
 import com.camellias.camsweaponry.core.init.ModItems;
 import com.camellias.camsweaponry.core.util.IHasModel;
+import com.camellias.camsweaponry.core.util.RayTracer;
 
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
@@ -16,6 +18,7 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
@@ -24,10 +27,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -41,7 +47,7 @@ public class ItemArquebus extends Item implements IHasModel
 		this.setRegistryName(name);
 		this.setCreativeTab(Main.WEAPONRY_TAB);
 		this.setMaxStackSize(1);
-		this.setMaxDamage(251);
+		this.setMaxDamage(256);
 		
 		this.addPropertyOverride(new ResourceLocation("ads"), new IItemPropertyGetter()
 		{
@@ -57,7 +63,7 @@ public class ItemArquebus extends Item implements IHasModel
 				{
 					if(stack.getTagCompound().hasKey("isLoaded"))
 					{
-						return entity != null && settings.isKeyDown(rclick) && stack.getTagCompound().getBoolean("isLoaded") ? 1.0F : 0.0F;
+						return entity != null && settings.isKeyDown(rclick) && gui == null && stack.getTagCompound().getBoolean("isLoaded") ? 1.0F : 0.0F;
 					}
 					else return 0.0F;
 				}
@@ -75,10 +81,9 @@ public class ItemArquebus extends Item implements IHasModel
 		{
 			World world = entity.world;
 			EntityPlayer player = (EntityPlayer) entity;
-			
 			ItemStack bullet = this.getStack(player, ModItems.BULLET);
 			ItemStack powder = this.getStack(player, ModItems.POWDER_BAG);
-		
+			
 			if(!stack.hasTagCompound())
 			{
 				stack.setTagCompound(new NBTTagCompound());
@@ -97,9 +102,21 @@ public class ItemArquebus extends Item implements IHasModel
 					world.playSound(player.posX, player.posY + player.height, player.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE,
 							SoundCategory.MASTER, 10.0F, 2.0F, true);
 					
-					EntityBullet entitybullet = new EntityBullet(world, player);
-					entitybullet.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 10.0F, 0.8F);
-					world.spawnEntity(entitybullet);
+					RayTracer.Beam beam = new RayTracer.Beam(world, player, 1000.0D, true);
+					
+					RayTracer.rayTraceEntity(beam, target ->
+			        {
+			            if(target instanceof EntityLivingBase)
+			            {
+			            	target.attackEntityFrom(DamageSource.causePlayerDamage(player), 15);
+			                
+			                return true;
+			            }
+			            else
+			            {
+			                return false;
+			            }
+			        });
 					
 					stack.getTagCompound().setBoolean("isLoaded", false);
 				}

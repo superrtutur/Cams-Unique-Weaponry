@@ -14,8 +14,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod(
 	modid = Reference.MODID, 
@@ -40,11 +38,6 @@ public class Main
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		if(event.getSide() == Side.CLIENT)
-		{
-			RegistryHandler.clientRegistries(event);
-		}
-		
 		RegistryHandler.preInitRegistries(event);
 	}
 	
