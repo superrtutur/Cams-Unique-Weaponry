@@ -49,7 +49,7 @@ public class ItemPowderBag extends Item implements IHasModel
 		ItemStack stack = player.getHeldItem(hand);
 		ItemStack gunpowder = getStack(player, Items.GUNPOWDER);
 		
-		if(stack.getItemDamage() >= 8 && !player.isCreative())
+		if(!gunpowder.isEmpty() && stack.getItemDamage() >= 8 && !player.isCreative())
 		{
 			gunpowder.shrink(1);
 			stack.setItemDamage(stack.getItemDamage() - 8);
