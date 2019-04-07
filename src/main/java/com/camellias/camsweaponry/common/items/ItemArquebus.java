@@ -118,6 +118,20 @@ public class ItemArquebus extends Item implements IHasModel
 			            }
 			        });
 					
+					/*for(double x = beam.getStart().x; x != beam.getEnd().x; x += (beam.getStart().x < beam.getEnd().x ? 1 : -1))
+					{
+						for(double y = beam.getStart().y; y != beam.getEnd().y; y += (beam.getStart().y < beam.getEnd().y ? 1 : -1))
+						{
+							for(double z = beam.getStart().z; z != beam.getEnd().z; z += (beam.getStart().z < beam.getEnd().z ? 1 : -1))
+							{
+								if(world.isRemote)
+								{
+									world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x, y, z, 0, 0, 0);
+								}
+							}
+						}
+					}*/
+					
 					stack.getTagCompound().setBoolean("isLoaded", false);
 				}
 			}

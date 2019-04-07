@@ -90,24 +90,28 @@ public class RayTracer
             lookVec = this.player.getLookVec();
             end = start.add(lookVec.x * this.maxDist, lookVec.y * this.maxDist, lookVec.z * this.maxDist);
             RayTraceResult result = this.world.rayTraceBlocks(start, end);
-            BlockPos pos = result.getBlockPos();
             dist = this.maxDist;
             
-            if(result != null && result.typeOfHit == Type.BLOCK && world.getBlockState(pos).getCollisionBoundingBox(world, pos) != Block.NULL_AABB)
+            if(result != null && result.typeOfHit == Type.BLOCK)
             {
-            	if(canBreak)
+            	BlockPos pos = result.getBlockPos();
+            	
+            	if(world.getBlockState(pos).getCollisionBoundingBox(world, pos) != Block.NULL_AABB)
             	{
-	            	if(player.isAllowEdit())
+	            	if(canBreak)
 	            	{
-		            	if(world.getBlockState(pos).getMaterial() == Material.GLASS || world.getBlockState(pos).getMaterial() == Material.ICE)
+		            	if(player.isAllowEdit())
 		            	{
-		            		world.destroyBlock(pos, false);
+			            	if(world.getBlockState(pos).getMaterial() == Material.GLASS || world.getBlockState(pos).getMaterial() == Material.ICE)
+			            	{
+			            		world.destroyBlock(pos, false);
+			            	}
 		            	}
 	            	}
+	            	
+	                dist = result.hitVec.distanceTo(start);
+	                end = start.add(lookVec.x * dist, lookVec.y * dist, lookVec.z * dist);
             	}
-            	
-                dist = result.hitVec.distanceTo(start);
-                end = start.add(lookVec.x * dist, lookVec.y * dist, lookVec.z * dist);
             }
         }
         
