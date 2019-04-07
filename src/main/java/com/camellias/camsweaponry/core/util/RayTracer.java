@@ -7,6 +7,7 @@ import java.util.function.Function;
 
 import org.apache.commons.lang3.tuple.Pair;
 
+import com.camellias.camsweaponry.core.util.RayTracer.Beam;
 import com.google.common.base.Predicates;
 
 import net.minecraft.block.Block;
@@ -14,6 +15,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EntitySelectors;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -62,6 +64,30 @@ public class RayTracer
         hitTargets.sort(Comparator.comparing(Pair::getRight));
         hitTargets.stream().filter(pair -> consumer.apply(pair.getLeft())).findFirst();
     }
+	
+	//Credits for this go to Zabi
+	public static void drawLine(Vec3d start, Vec3d end, World world, Beam beam, double density, EnumParticleTypes particle)
+	{
+	    double dist = beam.getDist();
+	    
+	    for(double done = 0; done < dist; done += density)
+	    {
+	        double alpha = done / dist;
+	        double x = interpolate(start.x, end.x, alpha);
+	        double y = interpolate(start.y, end.y, alpha);
+	        double z = interpolate(start.z, end.z, alpha);
+	        
+	        if(world.isRemote)
+			{
+				world.spawnParticle(particle, x, y, z, 0, 0, 0);
+			}
+	    }
+	}
+	
+	private static double interpolate(double start, double end, double alpha)
+	{
+	    return start + (end - start) * alpha;
+	}
 	
     public static class Beam
     {

@@ -7,9 +7,8 @@ import com.camellias.camsweaponry.Reference;
 import com.camellias.camsweaponry.core.init.ModItems;
 import com.camellias.camsweaponry.core.util.IHasModel;
 import com.camellias.camsweaponry.core.util.RayTracer;
+import com.camellias.camsweaponry.core.util.RayTracer.Beam;
 
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
@@ -18,7 +17,6 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
@@ -34,6 +32,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -102,7 +101,7 @@ public class ItemArquebus extends Item implements IHasModel
 					world.playSound(player.posX, player.posY + player.height, player.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE,
 							SoundCategory.MASTER, 10.0F, 2.0F, true);
 					
-					RayTracer.Beam beam = new RayTracer.Beam(world, player, 1000.0D, true);
+					RayTracer.Beam beam = new RayTracer.Beam(world, player, 128.0D, true);
 					
 					RayTracer.rayTraceEntity(beam, target ->
 			        {
@@ -118,19 +117,7 @@ public class ItemArquebus extends Item implements IHasModel
 			            }
 			        });
 					
-					/*for(double x = beam.getStart().x; x != beam.getEnd().x; x += (beam.getStart().x < beam.getEnd().x ? 1 : -1))
-					{
-						for(double y = beam.getStart().y; y != beam.getEnd().y; y += (beam.getStart().y < beam.getEnd().y ? 1 : -1))
-						{
-							for(double z = beam.getStart().z; z != beam.getEnd().z; z += (beam.getStart().z < beam.getEnd().z ? 1 : -1))
-							{
-								if(world.isRemote)
-								{
-									world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x, y, z, 0, 0, 0);
-								}
-							}
-						}
-					}*/
+					RayTracer.drawLine(beam.getStart(), beam.getEnd(), world, beam, 0.5D, EnumParticleTypes.SMOKE_NORMAL);
 					
 					stack.getTagCompound().setBoolean("isLoaded", false);
 				}
