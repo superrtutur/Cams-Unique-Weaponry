@@ -98,8 +98,8 @@ public class ItemArquebus extends Item implements IHasModel
 				{
 					stack.damageItem(1, player);
 					player.getCooldownTracker().setCooldown(this, 40);
-					world.playSound(player.posX, player.posY + player.height, player.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE,
-							SoundCategory.MASTER, 10.0F, 2.0F, true);
+					world.playSound(player, player.getPosition(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.MASTER, 10.0F, 2.0F);
+					player.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 100.0F, 2.0F);
 					
 					RayTracer.Beam beam = new RayTracer.Beam(world, player, 128.0D, true);
 					
