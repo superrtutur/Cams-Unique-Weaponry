@@ -124,7 +124,7 @@ public class RayTracer
             	
             	if(world.getBlockState(pos).getCollisionBoundingBox(world, pos) != Block.NULL_AABB)
             	{
-	            	if(canBreak)
+	            	if(canBreak && !world.isRemote)
 	            	{
 		            	if(player.isAllowEdit())
 		            	{

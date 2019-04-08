@@ -192,7 +192,7 @@ public class ItemArquebus extends Item implements IHasModel
 	@Override
 	public int getMaxItemUseDuration(ItemStack stack)
 	{
-		return !stack.getTagCompound().getBoolean("isLoaded") ? 60 : 7200;
+		return 60;
 	}
 	
 	@Override

@@ -7,6 +7,8 @@ import com.camellias.camsweaponry.core.handler.RegistryHandler;
 import com.camellias.camsweaponry.core.proxy.CommonProxy;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.item.ItemSword;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
