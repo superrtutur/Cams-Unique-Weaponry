@@ -101,13 +101,13 @@ public class ItemArquebus extends Item implements IHasModel
 					world.playSound(player, player.getPosition(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.MASTER, 10.0F, 2.0F);
 					player.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 100.0F, 2.0F);
 					
-					RayTracer.Beam beam = new RayTracer.Beam(world, player, 128.0D, true);
+					RayTracer.Beam beam = new RayTracer.Beam(world, player, 128.0D, 1D, true);
 					
 					RayTracer.rayTraceEntity(beam, target ->
 			        {
 			            if(target instanceof EntityLivingBase)
 			            {
-			            	target.attackEntityFrom(DamageSource.causePlayerDamage(player), 15);
+			            	target.attackEntityFrom(DamageSource.causePlayerDamage(player), 20);
 			                
 			                return true;
 			            }
