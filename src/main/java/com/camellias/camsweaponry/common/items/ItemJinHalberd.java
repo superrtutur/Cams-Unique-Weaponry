@@ -26,7 +26,7 @@ public class ItemJinHalberd extends ItemTool implements IHasModel
 	public ItemJinHalberd(String name, ToolMaterial material, Set<Block> effectiveBlocks)
 	{
 		super(material, effectiveBlocks);
-		this.setTranslationKey(Reference.MODID + "." + name);
+		this.setUnlocalizedName(Reference.MODID + "." + name);
 		this.setRegistryName(name);
 		setCreativeTab(Main.WEAPONRY_TAB);
 		this.attackSpeed = -3.0F;
@@ -39,8 +39,8 @@ public class ItemJinHalberd extends ItemTool implements IHasModel
 	@Override
 	public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flag)
 	{
-		final String info1 = TextFormatting.DARK_GRAY + I18n.format(this.getTranslationKey() + ".info1");
-		final String info2 = TextFormatting.DARK_GRAY + I18n.format(this.getTranslationKey() + ".info2");
+		final String info1 = TextFormatting.DARK_GRAY + I18n.format(this.getUnlocalizedName() + ".info1");
+		final String info2 = TextFormatting.DARK_GRAY + I18n.format(this.getUnlocalizedName() + ".info2");
 
 		tooltip.add(info1);
 		tooltip.add(info2);

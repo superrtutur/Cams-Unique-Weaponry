@@ -11,7 +11,7 @@ public class ItemIronBullet extends Item implements IHasModel
 {
 	public ItemIronBullet(String name)
 	{
-		this.setTranslationKey(Reference.MODID + "." + name);
+		this.setUnlocalizedName(Reference.MODID + "." + name);
 		this.setRegistryName(name);
 		this.setCreativeTab(Main.WEAPONRY_TAB);
 		

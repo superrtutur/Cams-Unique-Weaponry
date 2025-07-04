@@ -34,15 +34,7 @@ public class RegistryHandler
 			}
 		}
 	}
-	
-	public static void preInitRegistries(FMLPreInitializationEvent event)
-	{
-		CapabilitiesHandler.init();
-		NetworkHandler.init();
-		ModSmelting.init();
-		
-		MinecraftForge.EVENT_BUS.register(new EventHandler());
-	}
+
 
 	public static void initRegistries()
 	{

@@ -5,10 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.camellias.camsweaponry.common.items.ItemArquebus;
-import com.camellias.camsweaponry.common.items.ItemMacil;
-import com.camellias.camsweaponry.common.items.ItemPike;
-import com.camellias.camsweaponry.common.items.ItemJinHalberd;
+import com.camellias.camsweaponry.common.items.*;
 import com.camellias.camsweaponry.common.items.misc.ItemIronBullet;
 import com.camellias.camsweaponry.common.items.misc.ItemPowderBag;
 
@@ -26,6 +23,7 @@ public class ModItems
 	public static final ItemTool MACIL = new ItemMacil("macil", ModMaterials.MACIL_MATERIAL, EFFECTIVE_ON);
 	
 	public static final Item ARQUEBUS = new ItemArquebus("arquebus");
+	public static final Item MUSKET = new ItemMusket("musket");
 	public static final Item POWDER_BAG = new ItemPowderBag("powder_bag");
 	public static final Item BULLET = new ItemIronBullet("iron_bullet");
 }

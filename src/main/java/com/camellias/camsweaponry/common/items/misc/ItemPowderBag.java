@@ -27,7 +27,7 @@ public class ItemPowderBag extends Item implements IHasModel
 {
 	public ItemPowderBag(String name)
 	{
-		this.setTranslationKey(Reference.MODID + "." + name);
+		this.setUnlocalizedName(Reference.MODID + "." + name);
 		this.setRegistryName(name);
 		this.setCreativeTab(Main.WEAPONRY_TAB);
 		this.setHasSubtypes(true);
@@ -84,7 +84,7 @@ public class ItemPowderBag extends Item implements IHasModel
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flag)
 	{
-		final String info = TextFormatting.DARK_GRAY + I18n.format(this.getTranslationKey() + ".info");
+		final String info = TextFormatting.DARK_GRAY + I18n.format(this.getUnlocalizedName() + ".info");
 
 		tooltip.add(info);
 	}

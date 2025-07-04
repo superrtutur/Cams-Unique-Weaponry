@@ -1,19 +1,14 @@
 package com.camellias.camsweaponry.common.items;
 
-import java.util.List;
-
 import com.camellias.camsweaponry.Main;
 import com.camellias.camsweaponry.Reference;
 import com.camellias.camsweaponry.core.init.ModItems;
 import com.camellias.camsweaponry.core.util.IHasModel;
 import com.camellias.camsweaponry.core.util.RayTracer;
 import com.camellias.camsweaponry.core.util.RayTracer.Beam;
-
-import fr.dynamx.api.events.client.DynamXRenderItemEvent;
 import fr.dynamx.common.items.DynamXItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
@@ -27,30 +22,23 @@ import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.*;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemArquebus extends DynamXItem implements IHasModel
+import java.util.List;
+
+public class ItemMusket extends DynamXItem implements IHasModel
 {
-	public ItemArquebus(String name)
+	public ItemMusket(String name)
 	{
 		//this.setUnlocalizedName(Reference.MODID + "." + name);
 		//this.setRegistryName(name);
 		//this.setCreativeTab(Main.WEAPONRY_TAB);
 
-		super(Reference.MODID, name, new ResourceLocation(Reference.MODID, "models/item/arquebus/arquebus.obj"));
+		super(Reference.MODID, name, new ResourceLocation(Reference.MODID, "models/item/musket/musket.obj"));
 
 		this.setMaxStackSize(1);
 		this.setMaxDamage(256);
@@ -104,17 +92,17 @@ public class ItemArquebus extends DynamXItem implements IHasModel
 				if(stack.getTagCompound().getBoolean("isLoaded"))
 				{
 					stack.damageItem(1, player);
-					player.getCooldownTracker().setCooldown(this, 40);
+					player.getCooldownTracker().setCooldown(this, 300);
 					world.playSound(player, player.getPosition(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.MASTER, 10.0F, 2.0F);
 					player.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 100.0F, 2.0F);
 					
-					RayTracer.Beam beam = new RayTracer.Beam(world, player, 100.0D, 1D, true);
+					Beam beam = new Beam(world, player, 128.0D, 1D, true);
 					
 					RayTracer.rayTraceEntity(beam, target ->
 			        {
 			            if(target instanceof EntityLivingBase)
 			            {
-			            	target.attackEntityFrom(DamageSource.causePlayerDamage(player), 20);
+			            	target.attackEntityFrom(DamageSource.causePlayerDamage(player), 40);
 			                
 			                return true;
 			            }

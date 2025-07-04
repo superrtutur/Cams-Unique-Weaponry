@@ -126,7 +126,7 @@ public class RayTracer
 			lookVec = this.player.getLookVec();
 			this.player.rotationYaw = prevYaw;
 			this.player.rotationPitch = prevPitch;
-			end = start.add(lookVec.x * this.maxDist, lookVec.y * this.maxDist, lookVec.z * this.maxDist);
+			end = start.add(new Vec3d(lookVec.x * this.maxDist, lookVec.y * this.maxDist, lookVec.z * this.maxDist));
 			RayTraceResult result = this.world.rayTraceBlocks(start, end);
 			dist = this.maxDist;
 			
@@ -148,7 +148,7 @@ public class RayTracer
 					}
 					
 					dist = result.hitVec.distanceTo(start);
-					end = start.add(lookVec.x * dist, lookVec.y * dist, lookVec.z * dist);
+					end = start.add(new Vec3d(lookVec.x * dist, lookVec.y * dist, lookVec.z * dist));
 				}
 			}
 		}

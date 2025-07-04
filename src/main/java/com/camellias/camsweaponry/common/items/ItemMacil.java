@@ -29,7 +29,7 @@ public class ItemMacil extends ItemTool implements IHasModel
 	public ItemMacil(String name, ToolMaterial material, Set<Block> effectiveBlocks)
 	{
 		super(material, effectiveBlocks);
-		this.setTranslationKey(Reference.MODID + "." + name);
+		this.setUnlocalizedName(Reference.MODID + "." + name);
 		this.setRegistryName(name);
 		this.setCreativeTab(Main.WEAPONRY_TAB);
 		this.attackSpeed = -3.0F;
@@ -42,7 +42,7 @@ public class ItemMacil extends ItemTool implements IHasModel
 	@Override
 	public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flag)
 	{
-		String info = TextFormatting.DARK_GRAY + I18n.format(this.getTranslationKey() + ".info");
+		String info = TextFormatting.DARK_GRAY + I18n.format(this.getUnlocalizedName() + ".info");
 		
 		tooltip.add(info);
 	}
